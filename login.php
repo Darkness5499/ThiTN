@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Kiểm tra nếu username tồn tại
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Liên kết kết quả vào biến
-                    mysqli_stmt_bind_result($stmt, $id, $username, $password, $role);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $role);
                     if (mysqli_stmt_fetch($stmt)) {
                         // Xác thực mật khẩu
-                        if ($password == $password) {
+                        if (password_verify($password, $hashed_password)) {
                             // Mật khẩu đúng, bắt đầu phiên làm việc
                             $_SESSION["user_id"] = $id;
                             $_SESSION["username"] = $username;

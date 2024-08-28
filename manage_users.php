@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
     $full_name = $_POST['full_name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-
-    $query = "INSERT INTO users (username, password, role, full_name, phone, email) VALUES ('$username', '$password', '$role', '$full_name', '$phone', '$email')";
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $query = "INSERT INTO users (username, password, role, full_name, phone, email) VALUES ('$username', '$hashed_password', '$role', '$full_name', '$phone', '$email')";
     mysqli_query($conn, $query);
 }
 

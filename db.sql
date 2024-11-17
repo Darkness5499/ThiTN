@@ -45,5 +45,3 @@ CREATE TABLE vaccination_records (
 
 
 
-
-
